@@ -36,4 +36,16 @@ program
     }
   });
 
+program
+  .command('getPageBlocks')
+  .description('Retrieve blocks from a page in Notion')
+  .action(async () => {
+    try {
+      const blocks = await notionWrapper.getPageBlocks();
+      console.log(JSON.stringify(blocks, null, 2));
+    } catch (error) {
+      console.error('Error retrieving page blocks:', error);
+    }
+  });
+
 program.parse(process.argv);

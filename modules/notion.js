@@ -12,6 +12,20 @@ class NotionWrapper {
         const response = await this.notion.pages.retrieve({ page_id: this.pageId });
         return response;
     }
+    async getPageBlocks() {
+        const blocks = [];
+        let cursor;
+        do {
+            const response = await this.notion.blocks.children.list({
+                block_id: this.pageId,
+                start_cursor: cursor,
+            });
+            blocks.push(...response.results);
+            cursor = response.next_cursor;
+        } while (cursor);
+        return blocks;
+    }
+
     async addText(text, parentBlock = this.pageId) {
         const response = await this.notion.blocks.children.append({
             block_id: parentBlock,

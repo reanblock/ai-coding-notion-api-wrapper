@@ -15,6 +15,14 @@ describe("Notion API", () => {
         expect(receivedTitle).toBe(expectedTitle);
     });
     
+    it("should retrieve all blocks from a page successfully", async () => {
+        const notionWrapper = new NotionWrapper(NOTION_PAGE_ID);
+        const blocks = await notionWrapper.getPageBlocks();
+        
+        expect(Array.isArray(blocks)).toBe(true);
+        expect(blocks.length).toBeGreaterThan(0); // Assuming the page has at least one block
+    });
+
     it("should add text to a page successfully", async () => {
         const notion = new Client({ auth: process.env.NOTION_TOKEN });
         const notionWrapper = new NotionWrapper(NOTION_PAGE_ID);
