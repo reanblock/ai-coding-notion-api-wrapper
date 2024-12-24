@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest tests"
+    "test": "npx jest tests",
+    "cli": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@notionhq/client": "^2.2.15",
+    "commander": "^12.1.0",
     "dotenv": "^16.4.7"
   },
-  "jest": {                                                                                               
-    "setupFiles": ["<rootDir>/jest.setup.js"]                                                             
-  }         
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ]
+  }
 }
