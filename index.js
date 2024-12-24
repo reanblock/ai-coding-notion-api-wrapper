@@ -7,6 +7,7 @@ const program = new Command();
 const notionWrapper = new NotionWrapper(NOTION_PAGE_ID);
 
 program
+  .usage('getPage')
   .name('notion-cli')
   .description('CLI to interact with Notion API')
   .version('1.0.0');
@@ -20,6 +21,18 @@ program
       console.log(JSON.stringify(response, null, 2));
     } catch (error) {
       console.error('Error retrieving page:', error);
+    }
+  });
+
+program
+  .command('deleteBlock <blockId>')
+  .description('Delete a block from Notion by its ID')
+  .action(async (blockId) => {
+    try {
+      const response = await notionWrapper.deleteBlock(blockId);
+      console.log('Block deleted:', response);
+    } catch (error) {
+      console.error('Error deleting block:', error);
     }
   });
 
