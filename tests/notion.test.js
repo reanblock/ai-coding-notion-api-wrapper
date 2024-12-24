@@ -7,5 +7,10 @@ describe("Notion API", () => {
         const response = await notion.pages.retrieve({ page_id: NOTION_PAGE_ID });
         const receivedId = response.id.replace(/-/g, '');
         expect(receivedId).toBe(NOTION_PAGE_ID);
+
+        // Assuming the title is stored in response.properties.title.title[0].text.content
+        const expectedTitle = "AI Coding Exercise Page"; // Replace with the actual expected title
+        const receivedTitle = response.properties.title.title[0].text.content;
+        expect(receivedTitle).toBe(expectedTitle);
     });
 });
