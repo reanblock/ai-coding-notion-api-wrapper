@@ -48,4 +48,11 @@ program
     }
   });
 
+program
+  .command('version')
+  .description('Retrieve the version of this software')
+  .action(async () => {
+    console.log("0.1.0");
+  });
+
 program.parse(process.argv);
